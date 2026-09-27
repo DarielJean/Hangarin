@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from tasks import views
+from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -35,4 +36,6 @@ urlpatterns = [
     path('priority_list/add', views.PriorityCreateView.as_view(), name='priority-add'),
     path('priority_list/<pk>', views.PriorityUpdateView.as_view(), name='priority-update'),
     path('priority_list/<pk>/delete', views.PriorityDeleteView.as_view(), name='priority-delete'),
+
+    path("accounts/", include("allauth.urls")),
 ]
