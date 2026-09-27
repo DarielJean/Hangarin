@@ -23,6 +23,11 @@
                                 </div>
                             </form>
                         </div>
+                           <div class="col-md-6">
+                            <div class="pull-right">
+                                <a href="{% url 'note-add' %}" class="btn btn-success btn-rounded">Add Note</a>
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <form method="get" class="row g-2 align-items-center">
                                 <input type="hidden" name="q" value="{{ request.GET.q }}">
@@ -35,11 +40,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-6">
-                            <div class="pull-right">
-                                <a href="{% url 'note-add' %}" class="btn btn-success btn-rounded">Add Note</a>
-                            </div>
-                        </div>
+                     
                     </div>
                     <div class="card-body">
                         <table class="table table-striped mt-3">
