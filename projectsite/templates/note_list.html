@@ -23,6 +23,18 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="col-md-12">
+                            <form method="get" class="row g-2 align-items-center">
+                                <input type="hidden" name="q" value="{{ request.GET.q }}">
+                                <div class="col-auto"><label class="col-form-label">Sort by</label></div>
+                                <div class="col-auto">
+                                    <select class="form-control form-control-sm" name="sort_by" onchange="this.form.submit()">
+                                        <option value="-created_at" {% if request.GET.sort_by == "-created_at" %}selected{% endif %}>Newest</option>
+                                        <option value="created_at" {% if request.GET.sort_by == "created_at" %}selected{% endif %}>Oldest</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
                         <div class="col-md-6">
                             <div class="pull-right">
                                 <a href="{% url 'note-add' %}" class="btn btn-success btn-rounded">Add Note</a>
