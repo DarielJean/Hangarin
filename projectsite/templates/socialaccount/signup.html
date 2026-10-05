@@ -1,0 +1,87 @@
+{% load widget_tweaks %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Complete Sign Up</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f8f9fc;
+            padding: 20px;
+        }
+        .auth-card {
+            max-width: 500px;
+            width: 100%;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+        .auth-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #eef2ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 28px;
+            color: #4e54c8;
+        }
+    </style>
+</head>
+<body>
+<div class="auth-card">
+    <div class="auth-icon">
+        <i class="fab fa-{{ account.get_provider.id }}"></i>
+    </div>
+    <h4 class="text-center mb-2">Almost there!</h4>
+    <p class="text-center text-muted mb-4">
+        You're signing in with <strong>{{ account.get_provider_account }}</strong>.
+        Confirm a few details to finish creating your Hangarin account.
+    </p>
+
+    <form method="post" action="{% url 'socialaccount_signup' %}">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {% for error in form.non_field_errors %}
+            <p class="mb-0">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="form-group mb-3">
+            <label for="id_username">Username</label>
+            {% render_field form.username class="form-control" %}
+            {% if form.username.errors %}
+            <div class="text-danger small mt-1">{{ form.username.errors.0 }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="id_email">Email</label>
+            {% render_field form.email class="form-control" %}
+            {% if form.email.errors %}
+            <div class="text-danger small mt-1">{{ form.email.errors.0 }}</div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+    </form>
+
+    <p class="text-center mt-3 mb-0">
+        <a href="{% url 'account_login' %}" class="text-muted">Cancel</a>
+    </p>
+</div>
+</body>
+</html>
