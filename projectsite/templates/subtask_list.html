@@ -38,6 +38,15 @@
                                         <option value="status" {% if request.GET.sort_by == "status" %}selected{% endif %}>Status</option>
                                     </select>
                                 </div>
+                                <div class="col-auto"><label class="col-form-label">Status</label></div>
+                                <div class="col-auto">
+                                    <select class="form-control form-control-sm" name="status" onchange="this.form.submit()">
+                                        <option value="">All</option>
+                                        <option value="Pending" {% if request.GET.status == "Pending" %}selected{% endif %}>Pending</option>
+                                        <option value="In Progress" {% if request.GET.status == "In Progress" %}selected{% endif %}>In Progress</option>
+                                        <option value="Completed" {% if request.GET.status == "Completed" %}selected{% endif %}>Completed</option>
+                                    </select>
+                                </div>
                             </form>
                         </div>
                      

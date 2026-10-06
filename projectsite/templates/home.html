@@ -5,75 +5,144 @@
     <div class="container-fluid">
         <h4 class="page-title">Home</h4>
         <div class="row">
-            <div class="col-md-3">
-                <div class="card card-stats card-warning">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-5"><div class="icon-big text-center"><i class="la la-list"></i></div></div>
-                            <div class="col-7 d-flex align-items-center">
-                                <div class="numbers">
-                                    <p class="card-category">Tasks</p>
-                                    <h4 class="card-title">{{ total_tasks }}</h4>
+             <div class="col-md-3">
+                <a href="{% url 'task-list' %}" class="text-decoration-none">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-5"><div class="icon-big text-center"><i class="la la-list"></i></div></div>
+                                <div class="col-7 d-flex align-items-center">
+                                    <div class="numbers">
+                                        <p class="card-category">Tasks</p>
+                                        <h4 class="card-title">{{ total_tasks }}</h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-md-3">
-                <div class="card card-stats card-success">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-5"><div class="icon-big text-center"><i class="la la-bar-chart"></i></div></div>
-                            <div class="col-7 d-flex align-items-center">
-                                <div class="numbers">
-                                    <p class="card-category">Categories</p>
-                                    <h4 class="card-title">{{ total_categories }}</h4>
+                <a href="{% url 'category-list' %}" class="text-decoration-none">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-5"><div class="icon-big text-center"><i class="la la-bar-chart"></i></div></div>
+                                <div class="col-7 d-flex align-items-center">
+                                    <div class="numbers">
+                                        <p class="card-category">Categories</p>
+                                        <h4 class="card-title">{{ total_categories }}</h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-md-3">
-                <div class="card card-stats card-danger">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-5"><div class="icon-big text-center"><i class="la la-newspaper-o"></i></div></div>
-                            <div class="col-7 d-flex align-items-center">
-                                <div class="numbers">
-                                    <p class="card-category">SubTasks</p>
-                                    <h4 class="card-title">{{ total_subtasks }}</h4>
+                <a href="{% url 'subtask-list' %}" class="text-decoration-none">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-5"><div class="icon-big text-center"><i class="la la-newspaper-o"></i></div></div>
+                                <div class="col-7 d-flex align-items-center">
+                                    <div class="numbers">
+                                        <p class="card-category">SubTasks</p>
+                                        <h4 class="card-title">{{ total_subtasks }}</h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-md-3">
-                <div class="card card-stats card-primary">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-5"><div class="icon-big text-center"><i class="la la-check-circle"></i></div></div>
-                            <div class="col-7 d-flex align-items-center">
-                                <div class="numbers">
-                                    <p class="card-category">Due This Month</p>
-                                    <h4 class="card-title">{{ tasks_due_this_month }}</h4>
+                <a href="{% url 'task-list' %}" class="text-decoration-none">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-5"><div class="icon-big text-center"><i class="la la-check-circle"></i></div></div>
+                                <div class="col-7 d-flex align-items-center">
+                                    <div class="numbers">
+                                        <p class="card-category">Due This Month</p>
+                                        <h4 class="card-title">{{ tasks_due_this_month }}</h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
+
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-7">
                 <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Page Title</div>
-                        <div class="card-category">Page Subtitle</div>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="card-title">Recent Tasks</div>
+                            <div class="card-category">Latest tasks added</div>
+                        </div>
+                        <a href="{% url 'task-list' %}" class="btn btn-sm btn-primary btn-rounded">View All</a>
                     </div>
-                    <div class="card-body">Hello, World</div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Status</th>
+                                    <th>Deadline</th>
+                                    <th>Priority</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for task in recent_tasks %}
+                                <tr>
+                                    <td>{{ task.title }}</td>
+                                    <td>{{ task.status }}</td>
+                                    <td>{{ task.deadline|date:"M d, Y" }}</td>
+                                    <td>{{ task.priority }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr><td colspan="4" class="text-center">No tasks yet</td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="card-title">Recent SubTasks</div>
+                            <div class="card-category">Latest subtasks added</div>
+                        </div>
+                        <a href="{% url 'subtask-list' %}" class="btn btn-sm btn-primary btn-rounded">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Status</th>
+                                    <th>Parent Task</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for subtask in recent_subtasks %}
+                                <tr>
+                                    <td>{{ subtask.title }}</td>
+                                    <td>{{ subtask.status }}</td>
+                                    <td>{{ subtask.parent_task }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr><td colspan="3" class="text-center">No subtasks yet</td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

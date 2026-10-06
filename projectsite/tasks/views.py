@@ -25,16 +25,17 @@ class HomePageView(LoginRequiredMixin, ListView):
             deadline__year=today.year, deadline__month=today.month
         ).count()
 
+        context["recent_tasks"] = Task.objects.order_by('-created_at')[:8]
+        context["recent_subtasks"] = SubTask.objects.select_related('parent_task').order_by('-created_at')[:8]
+
         return context
-
-
 
 
 class TaskList(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'task'
     template_name = 'task_list.html'
-    paginate_by = 5
+    
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -44,6 +45,11 @@ class TaskList(LoginRequiredMixin, ListView):
                 Q(title__icontains=query) |
                 Q(description__icontains=query)
             )
+
+        status = self.request.GET.get('status')
+        if status:
+            qs = qs.filter(status=status)
+
         sort_by = self.request.GET.get('sort_by', 'title')
         qs = qs.order_by(sort_by)
         return qs
@@ -75,7 +81,7 @@ class SubTaskList(LoginRequiredMixin, ListView):
     model = SubTask
     context_object_name = 'subtask'
     template_name = 'subtask_list.html'
-    paginate_by = 5
+  
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -85,10 +91,14 @@ class SubTaskList(LoginRequiredMixin, ListView):
                 Q(title__icontains=query) |
                 Q(parent_task__title__icontains=query)
             )
+
+        status = self.request.GET.get('status')
+        if status:
+            qs = qs.filter(status=status)
+
         sort_by = self.request.GET.get('sort_by', 'title')
         qs = qs.order_by(sort_by)
         return qs
-
 
 class SubTaskCreateView(LoginRequiredMixin, CreateView):
     model = SubTask
@@ -116,7 +126,6 @@ class NoteList(LoginRequiredMixin, ListView):
     model = Note
     context_object_name = 'note'
     template_name = 'note_list.html'
-    paginate_by = 5
 
     def get_queryset(self):
         qs = super().get_queryset()
