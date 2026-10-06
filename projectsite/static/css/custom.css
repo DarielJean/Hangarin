@@ -308,3 +308,27 @@ html, body {
         font-size: 0.85rem;
     }
 }
+
+
+/* Force dropdown menu to float above content on mobile */
+.dropdown-user {
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    left: auto !important;
+    z-index: 2000 !important;
+    transform: none !important;
+}
+
+.main-header .dropdown {
+    position: static;
+}
+
+.main-header .container-fluid,
+.navbar-header .container-fluid {
+    overflow: visible !important;
+}
+
+body, html, .wrapper, .main-panel {
+    overflow-x: visible !important;
+}
