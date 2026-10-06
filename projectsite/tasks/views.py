@@ -35,7 +35,6 @@ class TaskList(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'task'
     template_name = 'task_list.html'
-    
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -50,10 +49,23 @@ class TaskList(LoginRequiredMixin, ListView):
         if status:
             qs = qs.filter(status=status)
 
+        priority = self.request.GET.get('priority')
+        if priority:
+            qs = qs.filter(priority__id=priority)
+
+        category = self.request.GET.get('category')
+        if category:
+            qs = qs.filter(category__id=category)
+
         sort_by = self.request.GET.get('sort_by', 'title')
         qs = qs.order_by(sort_by)
         return qs
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['priorities'] = Priority.objects.all()
+        context['categories'] = Category.objects.all()
+        return context
 
 class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
