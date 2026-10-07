@@ -1,20 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
 <div class="content">
     <div class="container-fluid">
-        <h4 class="page-title">Home</h4>
+        <!-- Page Title -->
+        <h4 class="page-title mb-3" style="color: #0b2545;">Home</h4>
+
+        <!-- Stat Cards Row -->
         <div class="row">
-             <div class="col-md-3">
+            <!-- Tasks Stat -->
+            <div class="col-12 col-sm-6 col-lg-3 mb-3">
                 <a href="{% url 'task-list' %}" class="text-decoration-none">
-                    <div class="card card-stats">
+                    <div class="card card-stats h-100" style="border: 1px solid #d0e1fd; background-color: #ffffff; transition: transform 0.2s ease;">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-5"><div class="icon-big text-center"><i class="la la-list"></i></div></div>
-                                <div class="col-7 d-flex align-items-center">
+                            <div class="row align-items-center">
+                                <div class="col-5">
+                                    <div class="icon-big text-center rounded-circle py-3" style="background-color: #e6f0ff; color: #003466;">
+                                        <i class="la la-list" style="font-size: 2rem;"></i>
+                                    </div>
+                                </div>
+                                <div class="col-7">
                                     <div class="numbers">
-                                        <p class="card-category">Tasks</p>
-                                        <h4 class="card-title">{{ total_tasks }}</h4>
+                                        <p class="card-category mb-1 font-weight-bold" style="color: #4a7bb0;">Tasks</p>
+                                        <h4 class="card-title font-weight-bold mb-0" style="color: #0b2545;">{{ total_tasks }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -22,16 +31,22 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-3">
+
+            <!-- Categories Stat -->
+            <div class="col-12 col-sm-6 col-lg-3 mb-3">
                 <a href="{% url 'category-list' %}" class="text-decoration-none">
-                    <div class="card card-stats">
+                    <div class="card card-stats h-100" style="border: 1px solid #d0e1fd; background-color: #ffffff; transition: transform 0.2s ease;">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-5"><div class="icon-big text-center"><i class="la la-bar-chart"></i></div></div>
-                                <div class="col-7 d-flex align-items-center">
+                            <div class="row align-items-center">
+                                <div class="col-5">
+                                    <div class="icon-big text-center rounded-circle py-3" style="background-color: #e6f0ff; color: #003466;">
+                                        <i class="la la-bar-chart" style="font-size: 2rem;"></i>
+                                    </div>
+                                </div>
+                                <div class="col-7">
                                     <div class="numbers">
-                                        <p class="card-category">Categories</p>
-                                        <h4 class="card-title">{{ total_categories }}</h4>
+                                        <p class="card-category mb-1 font-weight-bold" style="color: #4a7bb0;">Categories</p>
+                                        <h4 class="card-title font-weight-bold mb-0" style="color: #0b2545;">{{ total_categories }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -39,16 +54,22 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-3">
+
+            <!-- SubTasks Stat -->
+            <div class="col-12 col-sm-6 col-lg-3 mb-3">
                 <a href="{% url 'subtask-list' %}" class="text-decoration-none">
-                    <div class="card card-stats">
+                    <div class="card card-stats h-100" style="border: 1px solid #d0e1fd; background-color: #ffffff; transition: transform 0.2s ease;">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-5"><div class="icon-big text-center"><i class="la la-newspaper-o"></i></div></div>
-                                <div class="col-7 d-flex align-items-center">
+                            <div class="row align-items-center">
+                                <div class="col-5">
+                                    <div class="icon-big text-center rounded-circle py-3" style="background-color: #e6f0ff; color: #003466;">
+                                        <i class="la la-newspaper-o" style="font-size: 2rem;"></i>
+                                    </div>
+                                </div>
+                                <div class="col-7">
                                     <div class="numbers">
-                                        <p class="card-category">SubTasks</p>
-                                        <h4 class="card-title">{{ total_subtasks }}</h4>
+                                        <p class="card-category mb-1 font-weight-bold" style="color: #4a7bb0;">SubTasks</p>
+                                        <h4 class="card-title font-weight-bold mb-0" style="color: #0b2545;">{{ total_subtasks }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -56,16 +77,22 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-3">
+
+            <!-- Due This Month Stat -->
+            <div class="col-12 col-sm-6 col-lg-3 mb-3">
                 <a href="{% url 'task-list' %}" class="text-decoration-none">
-                    <div class="card card-stats">
+                    <div class="card card-stats h-100" style="border: 1px solid #d0e1fd; background-color: #ffffff; transition: transform 0.2s ease;">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-5"><div class="icon-big text-center"><i class="la la-check-circle"></i></div></div>
-                                <div class="col-7 d-flex align-items-center">
+                            <div class="row align-items-center">
+                                <div class="col-5">
+                                    <div class="icon-big text-center rounded-circle py-3" style="background-color: #e6f0ff; color: #003466;">
+                                        <i class="la la-check-circle" style="font-size: 2rem;"></i>
+                                    </div>
+                                </div>
+                                <div class="col-7">
                                     <div class="numbers">
-                                        <p class="card-category">Due This Month</p>
-                                        <h4 class="card-title">{{ tasks_due_this_month }}</h4>
+                                        <p class="card-category mb-1 font-weight-bold" style="color: #4a7bb0;">Due This Month</p>
+                                        <h4 class="card-title font-weight-bold mb-0" style="color: #0b2545;">{{ tasks_due_this_month }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -75,73 +102,98 @@
             </div>
         </div>
 
+        <!-- Recent Tables Row -->
         <div class="row">
-            <div class="col-md-7">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
+            <!-- Recent Tasks Table -->
+            <div class="col-12 col-lg-7 mb-4">
+                <div class="card h-100" style="border: 1px solid #d0e1fd; background-color: #ffffff;">
+                    <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #f0f5ff; border-bottom: 1px solid #d0e1fd;">
                         <div>
-                            <div class="card-title">Recent Tasks</div>
-                            <div class="card-category">Latest tasks added</div>
+                            <div class="card-title mb-0" style="color: #0b2545;">Recent Tasks</div>
+                            <div class="card-category small" style="color: #4a7bb0;">Latest tasks added</div>
                         </div>
-                        <a href="{% url 'task-list' %}" class="btn btn-sm btn-primary btn-rounded">View All</a>
+                        <a href="{% url 'task-list' %}" class="btn btn-sm btn-rounded text-white" style="background-color: #003466; border-color: #003466;">View All</a>
                     </div>
-                    <div class="card-body">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Status</th>
-                                    <th>Deadline</th>
-                                    <th>Priority</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for task in recent_tasks %}
-                                <tr>
-                                    <td>{{ task.title }}</td>
-                                    <td>{{ task.status }}</td>
-                                    <td>{{ task.deadline|date:"M d, Y" }}</td>
-                                    <td>{{ task.priority }}</td>
-                                </tr>
-                                {% empty %}
-                                <tr><td colspan="4" class="text-center">No tasks yet</td></tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                    <div class="card-body p-0">
+                        <!-- Scrollable Table Container -->
+                        <div class="table-responsive w-100" style="max-height: 320px; overflow-y: auto; overflow-x: auto;">
+                            <table class="table table-hover align-middle mb-0" style="color: #0b2545;">
+                                <thead style="background-color: #e6f0ff; color: #002244; position: sticky; top: 0; z-index: 1;">
+                                    <tr>
+                                        <th scope="col" style="min-width: 160px; border-bottom: 2px solid #99c2ff;">Title</th>
+                                        <th scope="col" style="min-width: 110px; border-bottom: 2px solid #99c2ff;">Status</th>
+                                        <th scope="col" style="min-width: 120px; border-bottom: 2px solid #99c2ff;">Deadline</th>
+                                        <th scope="col" style="min-width: 100px; border-bottom: 2px solid #99c2ff;">Priority</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for task in recent_tasks %}
+                                    <tr style="border-bottom: 1px solid #e6f0ff;">
+                                        <td class="font-weight-bold" style="color: #0b2545;">{{ task.title }}</td>
+                                        <td class="text-nowrap">
+                                            <span class="badge text-white" style="{% if task.status == 'Completed' %}background-color: #003466;{% elif task.status == 'In Progress' %}background-color: #0066cc;{% else %}background-color: #4a7bb0;{% endif %}">
+                                                {{ task.status }}
+                                            </span>
+                                        </td>
+                                        <td class="text-nowrap" style="color: #1a4971;">{{ task.deadline|date:"M d, Y"|default:"---" }}</td>
+                                        <td class="text-nowrap"><span class="badge" style="background-color: #d0e1fd; color: #003466;">{{ task.priority|default:"---" }}</span></td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="4" class="text-center py-4">
+                                            <p class="text-sm font-weight-bold mb-0" style="color: #4a7bb0;">No tasks yet</p>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-5">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
+            <!-- Recent SubTasks Table -->
+            <div class="col-12 col-lg-5 mb-4">
+                <div class="card h-100" style="border: 1px solid #d0e1fd; background-color: #ffffff;">
+                    <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #f0f5ff; border-bottom: 1px solid #d0e1fd;">
                         <div>
-                            <div class="card-title">Recent SubTasks</div>
-                            <div class="card-category">Latest subtasks added</div>
+                            <div class="card-title mb-0" style="color: #0b2545;">Recent SubTasks</div>
+                            <div class="card-category small" style="color: #4a7bb0;">Latest subtasks added</div>
                         </div>
-                        <a href="{% url 'subtask-list' %}" class="btn btn-sm btn-primary btn-rounded">View All</a>
+                        <a href="{% url 'subtask-list' %}" class="btn btn-sm btn-rounded text-white" style="background-color: #003466; border-color: #003466;">View All</a>
                     </div>
-                    <div class="card-body">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Status</th>
-                                    <th>Parent Task</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for subtask in recent_subtasks %}
-                                <tr>
-                                    <td>{{ subtask.title }}</td>
-                                    <td>{{ subtask.status }}</td>
-                                    <td>{{ subtask.parent_task }}</td>
-                                </tr>
-                                {% empty %}
-                                <tr><td colspan="3" class="text-center">No subtasks yet</td></tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                    <div class="card-body p-0">
+                        <!-- Scrollable Table Container -->
+                        <div class="table-responsive w-100" style="max-height: 320px; overflow-y: auto; overflow-x: auto;">
+                            <table class="table table-hover align-middle mb-0" style="color: #0b2545;">
+                                <thead style="background-color: #e6f0ff; color: #002244; position: sticky; top: 0; z-index: 1;">
+                                    <tr>
+                                        <th scope="col" style="min-width: 140px; border-bottom: 2px solid #99c2ff;">Title</th>
+                                        <th scope="col" style="min-width: 110px; border-bottom: 2px solid #99c2ff;">Status</th>
+                                        <th scope="col" style="min-width: 140px; border-bottom: 2px solid #99c2ff;">Parent Task</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for subtask in recent_subtasks %}
+                                    <tr style="border-bottom: 1px solid #e6f0ff;">
+                                        <td class="font-weight-bold" style="color: #0b2545;">{{ subtask.title }}</td>
+                                        <td class="text-nowrap">
+                                            <span class="badge text-white" style="{% if subtask.status == 'Completed' %}background-color: #003466;{% elif subtask.status == 'In Progress' %}background-color: #0066cc;{% else %}background-color: #4a7bb0;{% endif %}">
+                                                {{ subtask.status }}
+                                            </span>
+                                        </td>
+                                        <td style="color: #1a4971;">{{ subtask.parent_task }}</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="3" class="text-center py-4">
+                                            <p class="text-sm font-weight-bold mb-0" style="color: #4a7bb0;">No subtasks yet</p>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

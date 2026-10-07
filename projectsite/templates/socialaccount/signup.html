@@ -4,48 +4,62 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Complete Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Complete Sign Up - Hangarin</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css" />
     <style>
         body {
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-color: #f8f9fc;
-            padding: 20px;
+            background-color: #f0f5ff;
+            font-family: 'Nunito', sans-serif;
+            padding: 15px;
+            margin: 0;
         }
         .auth-card {
-            max-width: 500px;
+            max-width: 460px;
             width: 100%;
-            background: #fff;
+            background: #ffffff;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
+            border: 1px solid #d0e1fd;
+            box-shadow: 0 4px 18px rgba(11, 37, 69, 0.05);
+            padding: 2rem 1.75rem;
         }
         .auth-icon {
             width: 64px;
             height: 64px;
             border-radius: 50%;
-            background: #eef2ff;
+            background-color: #e6f0ff;
+            border: 1px solid #bcd7ff;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 28px;
-            color: #4e54c8;
+            margin: 0 auto 1.25rem;
+            font-size: 32px;
+            color: #003466;
+        }
+        .form-control {
+            border-color: #bcd7ff;
+            color: #0b2545;
+        }
+        .form-control:focus {
+            border-color: #004080;
+            box-shadow: 0 0 0 0.2rem rgba(0, 64, 128, 0.15);
         }
     </style>
 </head>
 <body>
 <div class="auth-card">
     <div class="auth-icon">
-        <i class="fab fa-{{ account.get_provider.id }}"></i>
+        <i class="la la-user-plus"></i>
     </div>
-    <h4 class="text-center mb-2">Almost there!</h4>
-    <p class="text-center text-muted mb-4">
-        You're signing in with <strong>{{ account.get_provider_account }}</strong>.
+    <h4 class="text-center font-weight-bold mb-2" style="color: #0b2545;">Almost there!</h4>
+    <p class="text-center mb-4" style="color: #4a7bb0; font-size: 0.95rem;">
+        You're signing in with <strong style="color: #003466;">{{ account.get_provider_account }}</strong>.<br>
         Confirm a few details to finish creating your Hangarin account.
     </p>
 
@@ -53,34 +67,36 @@
         {% csrf_token %}
 
         {% if form.non_field_errors %}
-        <div class="alert alert-danger">
+        <div class="alert text-white mb-3" style="background-color: #002244; border-radius: 8px;">
             {% for error in form.non_field_errors %}
-            <p class="mb-0">{{ error }}</p>
+            <p class="mb-0 small">{{ error }}</p>
             {% endfor %}
         </div>
         {% endif %}
 
         <div class="form-group mb-3">
-            <label for="id_username">Username</label>
+            <label for="id_username" class="font-weight-bold small mb-1" style="color: #1a4971;">Username</label>
             {% render_field form.username class="form-control" %}
             {% if form.username.errors %}
-            <div class="text-danger small mt-1">{{ form.username.errors.0 }}</div>
+            <div class="small mt-1 font-weight-bold" style="color: #002244;">{{ form.username.errors.0 }}</div>
             {% endif %}
         </div>
 
         <div class="form-group mb-4">
-            <label for="id_email">Email</label>
+            <label for="id_email" class="font-weight-bold small mb-1" style="color: #1a4971;">Email</label>
             {% render_field form.email class="form-control" %}
             {% if form.email.errors %}
-            <div class="text-danger small mt-1">{{ form.email.errors.0 }}</div>
+            <div class="small mt-1 font-weight-bold" style="color: #002244;">{{ form.email.errors.0 }}</div>
             {% endif %}
         </div>
 
-        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+        <button type="submit" class="btn btn-rounded text-white w-100 py-2 font-weight-bold" style="background-color: #003466; border-color: #003466;">
+            Complete Sign Up
+        </button>
     </form>
 
     <p class="text-center mt-3 mb-0">
-        <a href="{% url 'account_login' %}" class="text-muted">Cancel</a>
+        <a href="{% url 'account_login' %}" class="small font-weight-bold text-decoration-none" style="color: #4a7bb0;">Cancel</a>
     </p>
 </div>
 </body>

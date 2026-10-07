@@ -4,62 +4,109 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hangarin Login</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-        body { display:flex; align-items:center; justify-content:center; height:100vh; background:#f8f9fc; }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f5ff;
+            font-family: 'Nunito', sans-serif;
+            padding: 15px;
+            margin: 0;
+        }
+        .auth-card {
+            max-width: 440px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #d0e1fd;
+            box-shadow: 0 4px 18px rgba(11, 37, 69, 0.05);
+            padding: 2.25rem 1.75rem;
+        }
         .social-btn {
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 90px;
-                        height: 48px;
-                        border: 1px solid #dcdcdc;
-                        border-radius: 8px;
-                        font-size: 18px;
-                        color: #333;
-                        text-decoration: none;
-                        transition: all 0.15s ease;
-                    }
-                    .social-btn:hover {
-                        border-color: #999;
-                        background-color: #f5f5f5;
-                        color: #000;
-                        text-decoration: none;
-                    }
-        .auth-card { max-width:500px; width:100%; background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); padding:2rem; }
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 44px;
+            border: 1px solid #bcd7ff;
+            background-color: #f0f5ff;
+            border-radius: 8px;
+            font-size: 18px;
+            color: #003466;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .social-btn:hover {
+            border-color: #004080;
+            background-color: #e6f0ff;
+            color: #0b2545;
+            text-decoration: none;
+        }
+        .form-control {
+            border-color: #bcd7ff;
+            color: #0b2545;
+        }
+        .form-control:focus {
+            border-color: #004080;
+            box-shadow: 0 0 0 0.2rem rgba(0, 64, 128, 0.15);
+        }
     </style>
 </head>
 <body>
 <div class="auth-card">
-    <h3 class="mb-3 text-center">Hangarin Login</h3>
+    <h3 class="font-weight-bold text-center mb-3" style="color: #0b2545;">Hangarin Login</h3>
+    
     <form method="post" action="{% url 'account_login' %}">
         {% csrf_token %}
         <div class="text-center mb-3">
-            <p>Sign in with:</p>
-            <a href="{% provider_login_url 'google' %}" class="social-btn mx-1">
+            <p class="small font-weight-bold mb-2" style="color: #4a7bb0;">Sign in with:</p>
+            <a href="{% provider_login_url 'google' %}" class="social-btn mx-1" title="Google Login">
                 <i class="fab fa-google"></i>
             </a>
-            <a href="{% provider_login_url 'github' %}" class="social-btn mx-1">
+            <a href="{% provider_login_url 'github' %}" class="social-btn mx-1" title="GitHub Login">
                 <i class="fab fa-github"></i>
             </a>
         </div>
-        <p class="text-center">or:</p>
+        
+        <div class="d-flex align-items-center my-3">
+            <hr class="flex-grow-1" style="border-top: 1px solid #d0e1fd;">
+            <span class="px-2 small font-weight-bold" style="color: #4a7bb0;">or</span>
+            <hr class="flex-grow-1" style="border-top: 1px solid #d0e1fd;">
+        </div>
+
         <div class="form-group mb-3">
-            <label>Username or Email</label>
+            <label class="font-weight-bold small mb-1" style="color: #1a4971;">Username or Email</label>
             <input type="text" name="login" class="form-control" required>
         </div>
+        
         <div class="form-group mb-3">
-            <label>Password</label>
+            <label class="font-weight-bold small mb-1" style="color: #1a4971;">Password</label>
             <input type="password" name="password" class="form-control" required>
         </div>
+
         {% if form.non_field_errors %}
-        <div class="alert alert-danger">{% for error in form.non_field_errors %}<p class="mb-0">{{ error }}</p>{% endfor %}</div>
+        <div class="alert text-white mb-3" style="background-color: #002244; border-radius: 8px;">
+            {% for error in form.non_field_errors %}
+            <p class="mb-0 small">{{ error }}</p>
+            {% endfor %}
+        </div>
         {% endif %}
-        <button type="submit" class="btn btn-primary btn-block w-100">Log In</button>
+
+        <button type="submit" class="btn btn-rounded text-white w-100 py-2 font-weight-bold mt-2" style="background-color: #003466; border-color: #003466;">
+            Log In
+        </button>
     </form>
-    <p class="text-center mt-3">Don't have an account? <a href="{% url 'account_signup' %}">Sign up</a></p>
+    
+    <p class="text-center mt-4 mb-0 small" style="color: #4a7bb0;">
+        Don't have an account? <a href="{% url 'account_signup' %}" class="font-weight-bold text-decoration-none" style="color: #0055b3;">Sign up</a>
+    </p>
 </div>
 </body>
 </html>
